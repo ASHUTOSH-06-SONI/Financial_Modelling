@@ -10,11 +10,15 @@
 #include<vector>
 //#include"matplotlibcpp.h"
 #define ll long long 
+#include <random>
+
+std::mt19937 rng(time(nullptr));
+std::uniform_real_distribution<> dist(0.0, 1.0);
 double GBMSimulator::uniform(){
-    // linear congruential generator for getting some num bw 0,1 
-    // X(n+1) =(a*X(n)+c)mod m, apparently 1103515245 is a magic number lol, same goes with c=12345
-    current_state = (1103515245*current_state + 12345)%2147483648UL;
-    return (double)current_state/2147483648.0;
+    // now i'll replace the standard number gen with Mersenne Twister
+    static std::mt19937 rng(time(nullptr));
+    static std::uniform_real_distribution<> dist(0.0, 1.0);
+    return dist(rng);
 }
 double GBMSimulator::gaussian(){
     // box muller transform, basically used for converting 2 uniform nums
