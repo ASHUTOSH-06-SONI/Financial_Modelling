@@ -1,9 +1,14 @@
-class option{
+#ifndef OPTION_H
+#define OPTION_H
+
+class Option{
     public:
         double spot;
         double strike; 
         double sigma; 
-        double risk_free;
+        double r;
         double maturity;
         bool is_Call;
 };
+
+#endif
