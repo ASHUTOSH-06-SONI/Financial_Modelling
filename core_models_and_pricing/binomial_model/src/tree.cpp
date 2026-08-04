@@ -1,6 +1,45 @@
 #include "tree.h"
 #include <cmath>
 #include<iostream>
+#include <fstream>
+
+void Binomial_Tree::exportStockTree(const std::string& filename) const
+{
+    std::ofstream file(filename);
+    file << "[\n";
+    for (size_t i = 0; i < stockTree.size(); i++){
+        file << "  [";
+        for (size_t j = 0; j < stockTree[i].size(); j++){
+            file << stockTree[i][j];
+            if (j + 1 != stockTree[i].size())
+                file << ", ";
+        }
+        file << "]";
+        if (i + 1 != stockTree.size())
+            file << ",";
+        file << "\n";
+    }
+    file << "]";
+}
+void Binomial_Tree::exportoptionsTree(const std::string& filename) const
+{
+    std::ofstream file(filename);
+    file << "[\n";
+    for (size_t i = 0; i <optionsTree.size(); i++){
+        file << "  [";
+        for (size_t j = 0; j < optionsTree[i].size(); j++){
+            file <<optionsTree[i][j];
+            if (j + 1 != optionsTree[i].size())
+                file << ", ";
+        }
+        file << "]";
+        if (i + 1 != optionsTree.size())
+            file << ",";
+        file << "\n";
+    }
+    file << "]";
+}
+
 Binomial_Tree::Binomial_Tree(double S0,double sigma,double r,double T,int N){
     this->S0 = S0;
     this->sigma = sigma;

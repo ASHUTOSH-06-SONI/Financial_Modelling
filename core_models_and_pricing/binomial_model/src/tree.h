@@ -25,5 +25,7 @@ class Binomial_Tree{
         void buildOptionTree(const Option& option);
         void printOptionTree();
         double getOptionsPrice() const;
+        void exportStockTree(const std::string& filename)const;
+        void exportoptionsTree(const std::string& filename)const;
 };
 #endif

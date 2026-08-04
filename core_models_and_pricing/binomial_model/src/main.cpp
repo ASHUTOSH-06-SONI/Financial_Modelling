@@ -24,6 +24,8 @@ int main(){
     // tree.printStockTree();
     tree.buildOptionTree(opt);
     // tree.printOptionTree(); commented for debugging purposes 
+    tree.exportStockTree("stock_tree.json");
+    tree.exportoptionsTree("option_tree.json");
     std::cout<<"\n CRR Price =  "<<tree.getOptionsPrice()<<'\n';
     
 }
