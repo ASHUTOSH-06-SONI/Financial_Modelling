@@ -8,7 +8,7 @@ Here's a list of things that will be covered:
 - [ ] **Geometric Brownian Motion (GBM)** ✓ (Done)
 - [ ] Forward and Futures Contracts
 - [ ] Swaps & Commodity Swap Valuation
-- [ ] Binomial Lattice Model (Single & Multi-Period)
+- [ ] **Binomial Lattice Model (Single & Multi-Period)** ✓ (Done)
 - [ ] Black-Scholes Formula
 - [ ] American Options Pricing
 - [ ] Dividend-Paying Stock Options
