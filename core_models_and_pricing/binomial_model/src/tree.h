@@ -24,5 +24,6 @@ class Binomial_Tree{
         void printStockTree();
         void buildOptionTree(const Option& option);
         void printOptionTree();
+        double getOptionsPrice() const;
 };
 #endif

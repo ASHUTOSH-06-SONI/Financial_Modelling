@@ -12,9 +12,13 @@ Binomial_Tree::Binomial_Tree(double S0,double sigma,double r,double T,int N){
     u = std::exp(sigma* std::sqrt(dt));
     d = 1.0/u;
     p = (std::exp(r*dt)-d)/(u-d);
+    if(p<0 || p>1){
+        std::cerr<<"Invalid Risk- Neutral Probability (duhh). "<<'\n';
+    }
 }
 
 void Binomial_Tree::buildStockTree(){
+    stockTree.clear();
     for (int i = 0; i <= N; i++){
         std::vector<double> level;
         for (int j = 0; j <= i; j++){
@@ -25,16 +29,27 @@ void Binomial_Tree::buildStockTree(){
     }
 }
 void Binomial_Tree::buildOptionTree(const Option& option){
+    optionsTree.clear();
     std::vector<double> lastOptionLevel;
     for(double stockPrice:stockTree.back()){
         if(option.is_Call){
             lastOptionLevel.push_back(longcall(stockPrice, option.strike));
         }
-        if(!option.is_Call){
+        else{
             lastOptionLevel.push_back(longput(stockPrice,option.strike));
         }
     }
+    std::vector<double> currentLevel= lastOptionLevel;
     optionsTree.push_back(lastOptionLevel);
+    while(currentLevel.size()>1){
+        std::vector<double> nextLevel;
+        for(int j =0; j< currentLevel.size()-1; j++){
+            double value = std::exp(-r*dt)*(p*currentLevel[j+1]+(1-p)*currentLevel[j]);
+            nextLevel.push_back(value);
+        }
+        optionsTree.push_back(nextLevel);
+        currentLevel = nextLevel;
+    }
 }
 
 void Binomial_Tree::printStockTree(){
@@ -52,4 +67,7 @@ void Binomial_Tree::printOptionTree(){
             std::cout<<value<<" ";
         }std::cout<<'\n';
     }
+}
+double Binomial_Tree::getOptionsPrice()const{
+    return optionsTree.back()[0];
 }

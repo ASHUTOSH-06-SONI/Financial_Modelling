@@ -21,8 +21,9 @@ int main(){
     opt.is_Call=true;
     Binomial_Tree tree(opt.spot, opt.sigma, opt.r, opt.maturity, 3);
     tree.buildStockTree();
-    tree.printStockTree();
+    // tree.printStockTree();
     tree.buildOptionTree(opt);
-    tree.printOptionTree();
-
+    // tree.printOptionTree(); commented for debugging purposes 
+    std::cout<<"\n CRR Price =  "<<tree.getOptionsPrice()<<'\n';
+    
 }
