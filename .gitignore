@@ -3,3 +3,11 @@ prog
 *.out
 .DS_Store
 .DS_Store
+# Generated JSON outputs
+Core_Models_And_Pricing/binomial_model/stock_tree.json
+Core_Models_And_Pricing/binomial_model/option_tree.json
+Core_Models_And_Pricing/binomial_model/src/stock_tree.json
+Core_Models_And_Pricing/binomial_model/src/option_tree.json
+
+# Executable
+Core_Models_And_Pricing/binomial_model/src/prog
