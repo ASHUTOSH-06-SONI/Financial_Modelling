@@ -23,6 +23,19 @@ void Binomial_Tree::buildStockTree(){
         }
         stockTree.push_back(level);
     }
+    
+}
+void Binomial_Tree::buildOptionTree(const Option& option){
+    std::vector<double> lastOptionLevel;
+    for(double stockPrice:stockTree.back()){
+        if(option.is_Call){
+            lastOptionLevel.push_back(longcall(stockPrice, option.strike));
+        }
+        if(!option.is_Call){
+            lastOptionLevel.push_back(longput(stockPrice,option.strike));
+        }
+    }
+    optionsTree.push_back(lastOptionLevel);
 }
 
 void Binomial_Tree::printStockTree(){

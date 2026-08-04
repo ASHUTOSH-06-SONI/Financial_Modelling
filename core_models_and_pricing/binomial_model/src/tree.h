@@ -1,6 +1,9 @@
 #ifndef TREE_H
 #define TREE_H
 #include <vector>
+#include"payoff.h"
+#include"option.h"
+
 class Binomial_Tree{
     private:
         double S0;
@@ -19,5 +22,6 @@ class Binomial_Tree{
         Binomial_Tree(double S0, double sigma, double r, double T, int N);
         void buildStockTree();
         void printStockTree();
+        void buildOptionTree(const Option& option);
 };
 #endif
