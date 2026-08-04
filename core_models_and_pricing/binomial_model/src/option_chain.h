@@ -8,6 +8,7 @@ struct OptionChainRow{
     double callIV;
     double putLTP;
     double putIV;
+    double maturity;
 };
 OptionChainRow parseRow(const std::vector<std::string>& row);
 

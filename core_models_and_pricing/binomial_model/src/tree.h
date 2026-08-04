@@ -23,5 +23,6 @@ class Binomial_Tree{
         void buildStockTree();
         void printStockTree();
         void buildOptionTree(const Option& option);
+        void printOptionTree();
 };
 #endif

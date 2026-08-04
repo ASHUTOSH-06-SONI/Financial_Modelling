@@ -23,7 +23,6 @@ void Binomial_Tree::buildStockTree(){
         }
         stockTree.push_back(level);
     }
-    
 }
 void Binomial_Tree::buildOptionTree(const Option& option){
     std::vector<double> lastOptionLevel;
@@ -44,5 +43,13 @@ void Binomial_Tree::printStockTree(){
             std::cout<<price<<" ";
         }
         std::cout<<"\n";
+    }
+}
+
+void Binomial_Tree::printOptionTree(){
+    for(const auto& level:optionsTree){
+        for(double value:level){
+            std::cout<<value<<" ";
+        }std::cout<<'\n';
     }
 }

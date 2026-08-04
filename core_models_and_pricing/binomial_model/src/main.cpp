@@ -12,7 +12,17 @@ int main(){
     std::cout << "Call IV  : " << option.callIV << '\n';
     std::cout << "Put LTP  : " << option.putLTP << '\n';
     std::cout << "Put IV   : " << option.putIV << '\n';
-    Binomial_Tree tree(100, 0.2, 0.05, 1.0, 3);
+    Option opt;
+    opt.spot = 100;
+    opt.strike= 100;
+    opt.sigma=0.2;
+    opt.r=0.05;
+    opt.maturity= 1.0;
+    opt.is_Call=true;
+    Binomial_Tree tree(opt.spot, opt.sigma, opt.r, option.maturity, 3);
     tree.buildStockTree();
     tree.printStockTree();
+    tree.buildOptionTree(opt);
+    tree.printOptionTree();
+
 }
