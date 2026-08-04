@@ -19,7 +19,7 @@ int main(){
     opt.r=0.05;
     opt.maturity= 1.0;
     opt.is_Call=true;
-    Binomial_Tree tree(opt.spot, opt.sigma, opt.r, option.maturity, 3);
+    Binomial_Tree tree(opt.spot, opt.sigma, opt.r, opt.maturity, 3);
     tree.buildStockTree();
     tree.printStockTree();
     tree.buildOptionTree(opt);
