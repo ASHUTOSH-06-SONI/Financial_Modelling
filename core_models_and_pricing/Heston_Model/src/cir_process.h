@@ -2,5 +2,5 @@
 #ifndef CIR_PROCESS_H
 #define CIR_PROCESS_H
 #include "heston_model.h"
-double cir(double V, Heston_params& params, double dt,double Z);
+double cir(double V,const Heston_params& params, double dt,double Z);
 #endif
