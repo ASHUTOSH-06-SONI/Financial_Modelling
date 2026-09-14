@@ -25,7 +25,8 @@ int main(){
     }
     std::vector<double> variance_sum(steps+1,0.0);
     std::vector<double> variance_avg(steps+1);
-    int paths = 10000;
+    int paths = 100000;
+    int negative_cnt =0; 
     double min_variance = std::numeric_limits<double>::max();
     for(int i = 0; i<paths; i++){
         HestonPath path = simulate_path(params,T,steps);
@@ -34,6 +35,9 @@ int main(){
                 min_variance = path.variance[j];
             }
             variance_sum[j]+=path.variance[j];
+            if(path.variance[j] < 0.0){
+                negative_cnt++;  
+            }
         }
     }
     for(int i = 0; i<=steps; i++){
@@ -44,5 +48,7 @@ int main(){
         std::cout<<i<<std::endl;
     }
     std::cout<<"Minimum variance: "<<min_variance<<std::endl;
-    // discretization is a problem if we get value<0
+    // Euler discretization does not preserve CIR positivity
+    // a truncation treatment is used when evaluating quantities requiring non-negative variance.
+    std::cout<<"Negatives: "<<negative_cnt<<std::endl;
 }
