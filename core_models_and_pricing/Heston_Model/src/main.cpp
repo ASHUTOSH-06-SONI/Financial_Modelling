@@ -1,5 +1,6 @@
 #include<iostream>
 #include<vector>
+#include <limits>
 #include"heston_model.h"
 #include"heston_simulator.h"
 
@@ -19,22 +20,29 @@ int main(){
     std::cout<<"Final S :"<<path.spot[steps]<<std::endl;
     std::cout<<"Initial V :"<<path.variance[0]<<std::endl;
     std::cout<<"Final V :"<<path.variance[steps]<<std::endl;
-    for(int i = 0; i<steps; i+= 10){
+    for(int i = 0; i<=steps; i+= 10){
         std::cout<<"t = "<<i*T/steps<<"| S = "<<path.spot[i]<<" | V = "<<path.variance[i]<<std::endl;
     }
     std::vector<double> variance_sum(steps+1,0.0);
     std::vector<double> variance_avg(steps+1);
     int paths = 10000;
+    double min_variance = std::numeric_limits<double>::max();
     for(int i = 0; i<paths; i++){
         HestonPath path = simulate_path(params,T,steps);
         for(int j = 0; j<= steps; j++){
+            if(path.variance[j]<min_variance){
+                min_variance = path.variance[j];
+            }
             variance_sum[j]+=path.variance[j];
         }
     }
     for(int i = 0; i<=steps; i++){
         variance_avg[i] =variance_sum[i]/paths;
     }
+    std::cout<<"average variance of paths"<<std::endl;
     for(auto i : variance_avg){
         std::cout<<i<<std::endl;
     }
+    std::cout<<"Minimum variance: "<<min_variance<<std::endl;
+    // discretization is a problem if we get value<0
 }
